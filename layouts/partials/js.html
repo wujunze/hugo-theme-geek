@@ -11,3 +11,18 @@
 
 <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js"></script>
 <script> pangu.spacingPage();</script>
+
+{{ if eq ( getenv "HUGO_ENV" ) "production" }}
+{{ template "_internal/google_analytics_async.html" . }}
+{{ with .Site.Params.baiduAnalytics}}
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?{{.}}";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+{{ end }}
+{{ end }}
